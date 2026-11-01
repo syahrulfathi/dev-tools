@@ -2,7 +2,9 @@
 
 A native, offline macOS workbench for everyday developer text tasks. Requires macOS 14 or later. No accounts, telemetry, uploads, package downloads, or API keys.
 
-![dev-tools Base64 studio in light mode, with the developer tools sidebar and input and output editors](docs/images/dev-tools-base64.png)
+![Base64 studio in light mode, with the developer tools sidebar and input and output editors](docs/images/dev-tools-base64.png)
+
+*Screenshot from an earlier version; the current app is named `dev-tools`.*
 
 - **Base64:** encode/decode UTF-8 text, standard or URL-safe alphabet. URL-safe encoding omits padding. Whitespace is accepted when decoding. Binary results produce an explanatory error.
 - **JSON:** validate, pretty-print, minify, and optionally sort keys. Supports top-level scalar values.
@@ -22,6 +24,8 @@ open dist/dev-tools.app
 ```
 
 Building requires Apple's Swift command line tools (Swift 6 or newer). Swift Package Manager uses no third-party package dependencies. The build produces an app for the current Mac architecture.
+
+The build also creates `dist/dev-tools.zip` for distribution.
 
 ## Shortcuts
 

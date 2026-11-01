@@ -9,8 +9,8 @@ APP="$PWD/dist/dev-tools.app"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BUILD_DIR/dev-tools" "$APP/Contents/MacOS/dev-tools"
 # SwiftPM locates the resource bundle next to the executable inside the app.
-find "$BUILD_DIR" -maxdepth 1 -name '*.bundle' -exec cp -R {} "$APP/Contents/MacOS/" \;
-find "$BUILD_DIR" -maxdepth 1 -name '*.bundle' -exec cp -R {} "$APP/Contents/Resources/" \;
+find "$BUILD_DIR" -maxdepth 1 -name 'dev-tools_*.bundle' -exec cp -R {} "$APP/Contents/MacOS/" \;
+find "$BUILD_DIR" -maxdepth 1 -name 'dev-tools_*.bundle' -exec cp -R {} "$APP/Contents/Resources/" \;
 cat > "$APP/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -30,4 +30,6 @@ cat > "$APP/Contents/Info.plist" <<'PLIST'
 PLIST
 swift scripts/make-icon.swift "$APP/Contents/Resources/AppIcon.icns"
 codesign --force --deep --sign - "$APP"
+ditto -c -k --sequesterRsrc --keepParent "$APP" "$PWD/dist/dev-tools.zip"
 echo "Built: $APP"
+echo "Packaged: $PWD/dist/dev-tools.zip"
